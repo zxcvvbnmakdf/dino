@@ -5,9 +5,12 @@ import time
 
 
 class DinoBot:
-    def __init__(self,replay_button):
+    def __init__(self,replay_button,x1,y1,x2,y2):
         self.replay_button = replay_button
-
+        self.x1 =x1
+        self.y1 =y1
+        self.x2 =x2
+        self.y2 =y2
     def restart_game(self):
         pyautogui.click(self.replay_button)
 
@@ -21,7 +24,7 @@ class DinoBot:
         pyautogui.keyUp("space")
 
     def grab_image(self):
-        box =(1260,284 , 1330,315)
+        box =(1260,284 , 1315 ,315)
         image = ImageGrab.grab(box)
         gray_scale_image = ImageOps.grayscale(image)
         pixels_array = numpy.array(gray_scale_image.getcolors())
@@ -31,12 +34,12 @@ class DinoBot:
     def start(self):
         self.restart_game()
         while True:
-            if self.grab_image() != 2417:
+            if self.grab_image() != 1952:
                self.jump()
 
 
 def main():
-    bot = DinoBot((1430, 280))
+    bot = DinoBot(replay_button=(1430, 280), x1=1260, y1=284, x2=1315,y2=315)
     bot.start()
 
 
